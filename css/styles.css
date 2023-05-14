@@ -262,7 +262,9 @@ body {
 .hero-btn:hover,
 .hero-btn:focus,
 .modal-form-btn:hover,
-.modal-form-btn:focus {
+.modal-form-btn:focus,
+.footer-form-btn:hover,
+.footer-form-btn:focus {
   background-color: var(--pressed-state-color);
 }
 
@@ -393,7 +395,6 @@ body {
 }
 .footer-position {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 }
 .footer-thumb-logo {
@@ -444,9 +445,7 @@ body {
   border-radius: 50%;
 }
 .social-link-footer:hover,
-.social-link-footer:focus,
-.footer-form-btn:hover,
-.footer-form-btn:focus {
+.social-link-footer:focus {
   background-color: var(--success-color);
 }
 .social-icon-footer,
@@ -455,6 +454,9 @@ body {
 
   fill: currentColor;
   object-fit: cover;
+}
+.footer-thumb-form {
+  margin-left: auto;
 }
 .footer-form {
   margin-right: 0;
@@ -507,7 +509,7 @@ body {
 }
 .footer-form-input:focus-visible {
   outline: transparent;
-  border-color: var(--success-color);
+  border-color: var(--primary-brand-color);
 }
 .footer-form-btn {
   transition: background-color var(--transition-timings);
@@ -531,6 +533,7 @@ body {
   cursor: pointer;
   color: var(--third-color);
   background-color: var(--primary-brand-color);
+  box-shadow: var(--hero-btn-shadow);
 }
 
 /* Modal */
@@ -610,6 +613,7 @@ body {
   margin: 0;
   padding: 0;
   border: none;
+  margin-bottom: 24px;
 }
 .modal-form-title {
   margin-bottom: 16px;
@@ -697,26 +701,29 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
 }
-.modal-form-check-input {
+.modal-form-custom-checkbox {
   transition: background-color var(--transition-timings),
     border-color var(--transition-timings),
     outline-color var(--transition-timings);
 
-  appearance: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   display: block;
   width: 16px;
   height: 16px;
   border: 1px solid var(--modal-overlay);
   border-radius: 2px;
+  background-color: transparent;
 }
-.modal-form-check-input:checked {
+.modal-form-check-input:checked + .modal-form-custom-checkbox {
   background-color: var(--pressed-state-color);
   border-color: var(--pressed-state-color);
 }
-.modal-form-check-input:focus-visible {
-  outline-color: var(--primary-brand-color);
+.modal-form-check-input:focus-visible + .modal-form-custom-checkbox {
+  outline: 2px solid var(--primary-brand-color);
 }
 .modal-icon-check-mark {
   transition: opacity var(--transition-timings);
@@ -728,11 +735,13 @@ body {
   fill: var(--light-color);
   opacity: 0;
 }
-.modal-form-check-input:checked + .modal-icon-check-mark {
+.modal-form-check-input:checked ~ .modal-icon-check-mark {
   opacity: 1;
 }
 .modal-form-agreement-text {
   user-select: none;
+  padding-left: 24px;
+
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
